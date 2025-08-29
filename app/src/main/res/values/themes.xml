@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.MySplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenAnimatedIcon">@drawable/transparent</item>
+        <item name="windowSplashScreenBackground">@color/green</item>
+        <item name="postSplashScreenTheme">@style/Theme.Ecommereapp</item>
+    </style>
+    <style name="Theme.Ecommereapp" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>
