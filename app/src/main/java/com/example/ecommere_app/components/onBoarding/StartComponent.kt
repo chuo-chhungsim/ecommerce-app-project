@@ -1,4 +1,4 @@
-package com.example.ecommere_app.components.auth
+package com.example.ecommere_app.components.onBoarding
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -17,19 +17,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.ecommere_app.R
 import com.example.ecommere_app.components.PrimaryButton
+import com.example.ecommere_app.utility.Screen
 
-@Preview(
-    showBackground = true,
-    device = "spec:width=1080px,height=2340px,dpi=440",
-    showSystemUi = true
-)
+
 @Composable
-fun StartScreen() {
+fun StartScreen(navController: NavController) {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -79,7 +76,12 @@ fun StartScreen() {
             PrimaryButton(
                 text = "Get Started",
                 backgroundColor = R.color.btn_green,
-                onClick = {},
+                onClick = {
+                    navController.navigate(Screen.Login.route) {
+                        popUpTo(Screen.OnBoard.route) { inclusive = true }
+                        launchSingleTop = true
+                    }
+                },
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
         }

@@ -11,8 +11,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.example.ecommere_app.screen.MainScreen
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.ecommere_app.components.onBoarding.LoginScreen
+import com.example.ecommere_app.components.onBoarding.SignUpScreen
+import com.example.ecommere_app.components.onBoarding.StartScreen
 import com.example.ecommere_app.ui.theme.EcommereappTheme
+import com.example.ecommere_app.utility.Screen
 import com.example.ecommere_app.utility.TextSplash
 import kotlinx.coroutines.delay
 
@@ -35,7 +41,20 @@ fun MyApp() {
         if (showSplash) {
             TextSplash()
         } else {
-            MainScreen()
+            AppNavHost()
         }
+    }
+}
+
+@Composable
+fun AppNavHost() {
+    val navController = rememberNavController()
+    NavHost(
+        navController = navController,
+        startDestination = Screen.OnBoard.route
+    ) {
+        composable(Screen.OnBoard.route) { StartScreen(navController) }
+        composable(Screen.Login.route)   { LoginScreen(navController) }
+        composable(Screen.SignUp.route)  { SignUpScreen(navController) } // create this
     }
 }

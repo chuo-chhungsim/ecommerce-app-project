@@ -1,9 +1,9 @@
 package com.example.ecommere_app.screen
 
 import androidx.compose.runtime.Composable
-import com.example.ecommere_app.components.auth.StartScreen
+import androidx.navigation.NavController
 
 @Composable
-fun MainScreen(){
-    StartScreen()
+fun MainScreen(navController: NavController) {
+
 }
