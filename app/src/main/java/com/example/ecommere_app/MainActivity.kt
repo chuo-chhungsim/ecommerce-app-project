@@ -17,9 +17,10 @@ import androidx.navigation.compose.rememberNavController
 import com.example.ecommere_app.components.onBoarding.LoginScreen
 import com.example.ecommere_app.components.onBoarding.SignUpScreen
 import com.example.ecommere_app.components.onBoarding.StartScreen
+import com.example.ecommere_app.navigation.MainScreen
 import com.example.ecommere_app.ui.theme.EcommereappTheme
+import com.example.ecommere_app.screen.TextSplash
 import com.example.ecommere_app.utility.Screen
-import com.example.ecommere_app.utility.TextSplash
 import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
@@ -28,33 +29,29 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MyApp()
+            EcommereappTheme {
+                var showSplash by remember { mutableStateOf(true) }
+                LaunchedEffect(Unit) { delay(1000); showSplash = false }
+                if (showSplash) {
+                    TextSplash()
+                } else {
+                    AppNavHost()
+                }
+            }
         }
     }
 }
-
-@Composable
-fun MyApp() {
-    EcommereappTheme {
-        var showSplash by remember { mutableStateOf(true) }
-        LaunchedEffect(Unit) { delay(1000); showSplash = false }
-        if (showSplash) {
-            TextSplash()
-        } else {
-            AppNavHost()
-        }
-    }
-}
-
 @Composable
 fun AppNavHost() {
-    val navController = rememberNavController()
+    val appNav = rememberNavController()
     NavHost(
-        navController = navController,
+        navController = appNav,
         startDestination = Screen.OnBoard.route
     ) {
-        composable(Screen.OnBoard.route) { StartScreen(navController) }
-        composable(Screen.Login.route)   { LoginScreen(navController) }
-        composable(Screen.SignUp.route)  { SignUpScreen(navController) } // create this
+        composable(Screen.OnBoard.route) { StartScreen(appNav) }
+        composable(Screen.Login.route)   { LoginScreen(appNav) }
+        composable(Screen.SignUp.route)  { SignUpScreen(appNav) }
+        composable(Screen.Home.route)    { MainScreen(navController = appNav) } // ✅ only outer nav passed
     }
 }
+

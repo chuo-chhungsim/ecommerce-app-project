@@ -145,7 +145,7 @@ fun LoginScreen(navController: NavController) {
             PrimaryButton(
                 text = "Login",
                 backgroundColor = R.color.btn_green,
-                onClick = { /*TODO*/ },
+                onClick = {navController.navigate(Screen.Home.route) },
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(Modifier.height(24.dp))

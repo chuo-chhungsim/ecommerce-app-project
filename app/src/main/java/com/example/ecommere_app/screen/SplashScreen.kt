@@ -1,4 +1,4 @@
-package com.example.ecommere_app.utility
+package com.example.ecommere_app.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

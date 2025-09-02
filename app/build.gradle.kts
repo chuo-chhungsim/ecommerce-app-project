@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.ecommere_app"
-        minSdk = 29
+        minSdk = 27
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
