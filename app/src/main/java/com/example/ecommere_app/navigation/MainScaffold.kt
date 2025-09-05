@@ -16,6 +16,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import bottomNavItems
 import com.example.ecommere_app.screen.HomeContent
+import com.example.ecommere_app.screen.ProductDetailScreen
+import com.example.ecommere_app.utility.Tab
+import groceriesDemo
 import productsDemo
 
 @Composable
@@ -29,19 +32,20 @@ fun MainScreen(
     ) { innerPadding ->
         NavHost(
             navController = tabsNavController,
-            startDestination = "shop",
+            startDestination = Tab.Shop.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable("shop") {
+            composable(Tab.Shop.route) {
                 HomeContent(
                     onSearch = { /* handle */ },
-                    products = productsDemo
+                    products = productsDemo, groceries = groceriesDemo,
+                    navController = navController
                 )
             }
-            composable("explore") { ExploreContent() }
-            composable("cart") { CartContent() }
-            composable("favourite") { FavouriteContent() }
-            composable("account") { AccountContent() }
+            composable(Tab.Explore.route) { ExploreContent() }
+            composable(Tab.Cart.route) { CartContent() }
+            composable(Tab.Favourite.route) { FavouriteContent() }
+            composable(Tab.Account.route) { AccountContent() }
         }
     }
 }

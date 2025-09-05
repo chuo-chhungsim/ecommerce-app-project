@@ -143,10 +143,11 @@ fun LoginScreen(navController: NavController) {
             )
             Spacer(Modifier.height(24.dp))
             PrimaryButton(
-                text = "Login",
                 backgroundColor = R.color.btn_green,
+                text = "Login",
                 onClick = {navController.navigate(Screen.Home.route) },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                contentColor = R.color.white
             )
             Spacer(Modifier.height(24.dp))
             Text(

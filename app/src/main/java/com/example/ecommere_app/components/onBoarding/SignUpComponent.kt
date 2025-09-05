@@ -58,13 +58,13 @@ fun SignUpScreen(navController: NavController) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxSize()
         ) {
-            Spacer(Modifier.height(100.dp))
+            Spacer(Modifier.height(70.dp))
             Image(
                 painter = painterResource(R.drawable.color_logo),
                 contentDescription = "Logo-color",
                 modifier = Modifier.size(70.dp)
             )
-            Spacer(Modifier.height(100.dp))
+            Spacer(Modifier.height(50.dp))
             Text(
                 text = "SignUp",
                 textAlign = TextAlign.Start,
@@ -187,10 +187,11 @@ fun SignUpScreen(navController: NavController) {
 
             Spacer(Modifier.height(24.dp))
             PrimaryButton(
-                text = "Sing Up",
                 backgroundColor = R.color.btn_green,
+                text = "Sing Up",
                 onClick = { navController.navigate(Screen.Login.route) },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                contentColor = R.color.white
             )
             Spacer(Modifier.height(24.dp))
             Text(text = buildAnnotatedString {

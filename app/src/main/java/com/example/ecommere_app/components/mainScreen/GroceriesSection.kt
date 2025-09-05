@@ -16,25 +16,43 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.ecommere_app.components.GroceriesCard
 import com.example.ecommere_app.components.ProductCard
 import com.example.ecommere_app.components.Title
+import com.example.ecommere_app.model.GroceriesUI
 import com.example.ecommere_app.model.ProductUI
+import groceriesDemo
 import productsDemo
 
 
 @Composable
-fun BestSellingSection(
+fun GroceriesSection(
+    category: List<GroceriesUI>,
     products: List<ProductUI>,
     onAddClick: (ProductUI) -> Unit,
     navController: NavController
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Title(
-            title = "Best Selling",
-            modifier = Modifier,
-            onSeeAll = { TODO() }
+            title = "Groceries",
+            onSeeAll = { TODO() },
+            modifier = Modifier
         )
         Spacer(Modifier.height(12.dp))
+        val categoriesState = rememberLazyListState()
+        LazyRow(
+            state = categoriesState,
+            contentPadding = PaddingValues(horizontal = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            items(category, key = { it.id }) { item ->
+                GroceriesCard(
+                    item = item,
+                    modifier = Modifier.width(280.dp)
+                )
+            }
+        }
+        Spacer(Modifier.height(16.dp))
 
         val listState = rememberLazyListState()
 
@@ -50,16 +68,14 @@ fun BestSellingSection(
                     modifier = Modifier.width(180.dp),
                     navController = navController
                 )
-
             }
         }
     }
-
 }
 
 @Preview(showSystemUi = false, showBackground = true)
 @Composable
-fun BestSellingSectionPreview() {
+fun GroceriesSectionPreview() {
     val navController = rememberNavController()
-    BestSellingSection(productsDemo, onAddClick = {},navController = navController)
+    GroceriesSection(category = groceriesDemo,productsDemo, onAddClick = {},navController = navController)
 }

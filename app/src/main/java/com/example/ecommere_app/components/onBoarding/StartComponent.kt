@@ -74,15 +74,16 @@ fun StartScreen(navController: NavController) {
             )
             Spacer(Modifier.height(30.dp))
             PrimaryButton(
-                text = "Get Started",
                 backgroundColor = R.color.btn_green,
+                text = "Get Started",
                 onClick = {
                     navController.navigate(Screen.Login.route) {
                         popUpTo(Screen.OnBoard.route) { inclusive = true }
                         launchSingleTop = true
                     }
                 },
-                modifier = Modifier.padding(horizontal = 24.dp)
+                modifier = Modifier.padding(horizontal = 24.dp),
+                contentColor = R.color.white
             )
         }
     }

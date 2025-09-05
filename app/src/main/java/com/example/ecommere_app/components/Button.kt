@@ -27,8 +27,9 @@ fun PrimaryButton(
     text: String,
     onClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier,
+    contentColor: Int,
 
-) {
+    ) {
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -41,7 +42,7 @@ fun PrimaryButton(
     ) {
         Text(
             text = text,
-            color = colorResource(id = R.color.white),
+            color = colorResource(id = contentColor),
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.SemiBold,
             fontSize = 16.sp
@@ -54,6 +55,7 @@ fun PrimaryButtonButtonPreview() {
     PrimaryButton(
         backgroundColor = R.color.btn_green,
         text = "Start Game",
-        onClick = {}
+        onClick = {},
+        contentColor = R.color.white,
     )
 }

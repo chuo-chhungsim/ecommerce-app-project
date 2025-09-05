@@ -18,7 +18,7 @@ import com.example.ecommere_app.R
 
 @Composable
 fun Title(
-    tittle: String,
+    title: String,
     onSeeAll: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -30,7 +30,7 @@ fun Title(
             .fillMaxWidth()
     ) {
         Text(
-            text = tittle,
+            text = title,
             fontSize = 22.sp,
             fontWeight = FontWeight.SemiBold,
             modifier = modifier
@@ -48,6 +48,6 @@ fun Title(
 @Preview(showBackground = true)
 @Composable
 fun TittlePreview() {
-    Title(tittle = "Sample Title", onSeeAll = {})
+    Title(title = "Sample Title", onSeeAll = {})
 
 }

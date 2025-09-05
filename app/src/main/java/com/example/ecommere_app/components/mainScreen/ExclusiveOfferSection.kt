@@ -14,7 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.ecommere_app.R
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.ecommere_app.components.ProductCard
 import com.example.ecommere_app.components.Title
 import com.example.ecommere_app.model.ProductUI
@@ -24,11 +25,12 @@ import productsDemo
 @Composable
 fun ExclusiveOfferSection(
     products: List<ProductUI>,
-    onAddClick: (ProductUI) -> Unit
+    onAddClick: (ProductUI) -> Unit,
+    navController: NavController
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Title(
-            tittle = "Exclusive Offer",
+            title = "Exclusive Offer",
             modifier = Modifier,
             onSeeAll = { TODO() }
         )
@@ -45,17 +47,17 @@ fun ExclusiveOfferSection(
                 ProductCard(
                     product = product,
                     onAddClick = { onAddClick(product) },
-                    modifier = Modifier.width(180.dp)
+                    modifier = Modifier.width(180.dp),
+                    navController = navController
                 )
-
             }
         }
     }
-
 }
 
 @Preview(showSystemUi = false, showBackground = true)
 @Composable
 fun ExclusiveOfferSectionPreview() {
-    ExclusiveOfferSection(productsDemo, onAddClick = {})
+    val navController = rememberNavController()
+    ExclusiveOfferSection(productsDemo, onAddClick = {}, navController = navController)
 }

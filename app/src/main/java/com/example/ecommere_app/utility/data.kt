@@ -2,38 +2,60 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.ui.graphics.Color
 import com.example.ecommere_app.R
 import com.example.ecommere_app.model.BottomNavItem
+import com.example.ecommere_app.model.GroceriesUI
 import com.example.ecommere_app.model.ProductUI
 
 val productsDemo = listOf(
     ProductUI(
         id = "1",
-        name = "Organic Bananas",
-        subTitle = "7pcs, Priceg",
-        price = "$4.99",
-        imageRes = R.drawable.apple_
+        name = "Fresh Apples",
+        subTitle = "1kg, Price",
+        price = 3.99,
+        productDetail = "Apples are nutritious and a good source of fiber and vitamin C. They may help with weight management and heart health.",
+        rating = 4.5f,
+        nutrition = listOf("100 kcal", "Sugar Free", "Low Fat"),
+        isFavorite = true,
+        imageRes = R.drawable.apple_ // replace with your actual drawable
     ),
     ProductUI(
         id = "2",
-        name = "Red Apple",
-        subTitle = "1kg, Priceg",
-        price = "$4.99",
-        imageRes = R.drawable.apple_
+        name = "Bananas",
+        subTitle = "7pcs, Price",
+        price = 2.49,
+        productDetail = "Bananas are rich in potassium and great for quick energy. A perfect snack for kids and athletes.",
+        rating = 4.7f,
+        nutrition = listOf("100 kcal", "Sugar Free", "Low Fat"),
+        isFavorite = false,
+        imageRes = R.drawable.apple_ // replace with your actual drawable
     ),
     ProductUI(
         id = "3",
-        name = "Strawberries",
-        subTitle = "1kg, Priceg",
-        price = "$5.99",
-        imageRes = R.drawable.apple_
+        name = "Carrots",
+        subTitle = "500g, Price",
+        price = 1.99,
+        productDetail = "Carrots are crunchy and packed with beta-carotene, fiber, vitamin K1, and antioxidants.",
+        rating = 4.3f,
+        nutrition = listOf("100 kcal", "Sugar Free", "Low Fat"),
+        isFavorite = true,
+        imageRes = R.drawable.apple_ // replace with your actual drawable
+    )
+)
+
+val groceriesDemo = listOf(
+    GroceriesUI(
+        id = "1",
+        itemName = "Rice",
+        backgroundColor = Color(0xFFE0F7FA), // light teal
+        imageRes = R.drawable.rice   // replace with your drawable
     ),
-    ProductUI(
-        id = "4",
-        name = "Grapes",
-        subTitle = "1kg, Priceg",
-        price = "$6.99",
-        imageRes = R.drawable.apple_
+    GroceriesUI(
+        id = "2",
+        itemName = "pulses",
+        backgroundColor = Color(0xFFFFF3E0), // light orange
+        imageRes = R.drawable.pulses       // replace with your drawable
     )
 )
 val bottomNavItems = listOf(

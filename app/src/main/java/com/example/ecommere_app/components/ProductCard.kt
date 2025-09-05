@@ -30,6 +30,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.ecommere_app.R
 import com.example.ecommere_app.model.ProductUI
 
@@ -37,14 +39,15 @@ import com.example.ecommere_app.model.ProductUI
 fun ProductCard(
     product: ProductUI,
     onAddClick: (ProductUI) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavController
 ) {
 
     Card(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         border = BorderStroke(1.dp, Color(0xFFE6E6E6)),
-        modifier = modifier
+        modifier = modifier.clickable { navController.navigate("productDetail/${product.id}") }
     ) {
         Column(Modifier.padding(12.dp), horizontalAlignment = Alignment.Start) {
             Image(
@@ -69,7 +72,7 @@ fun ProductCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    product.price,
+                    product.price.toString(),
                     color = Color.Black,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 18.sp
@@ -101,8 +104,13 @@ fun ProductCardPreview() {
         id = "1",
         name = "Organic Bananas",
         subTitle = "7pcs, Price",
-        price = "$4.99",
+        price = 4.99,
+        rating = 4.5f,
+        productDetail = "hi",
+        nutrition = listOf("100 kcal", "Sugar Free", "Low Fat"),
+        isFavorite = true,
         imageRes = R.drawable.apple_
     )
-    ProductCard(product = product, onAddClick = {})
+    val navController = rememberNavController()
+    ProductCard(product = product, onAddClick = {}, navController = navController)
 }

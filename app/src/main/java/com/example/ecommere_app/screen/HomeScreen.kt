@@ -21,15 +21,20 @@ import com.example.ecommere_app.components.SearchField
 import com.example.ecommere_app.components.mainScreen.Banner
 import com.example.ecommere_app.components.mainScreen.BestSellingSection
 import com.example.ecommere_app.components.mainScreen.ExclusiveOfferSection
+import com.example.ecommere_app.components.mainScreen.GroceriesSection
+import com.example.ecommere_app.model.GroceriesUI
 import com.example.ecommere_app.model.ProductUI
 import com.example.ecommere_app.navigation.BottomNavBar
 import com.example.ecommere_app.navigation.TopAppBar
+import groceriesDemo
 import productsDemo
 
 @Composable
 fun HomeContent(
     onSearch: (String) -> Unit,
-    products: List<ProductUI>
+    products: List<ProductUI>,
+    groceries: List<GroceriesUI>,
+    navController: NavController
 ) {
     Column(
         modifier = Modifier
@@ -56,18 +61,28 @@ fun HomeContent(
 
         Spacer(Modifier.height(12.dp))
 
-        ExclusiveOfferSection(products = products, onAddClick = { /* add */ })
+        ExclusiveOfferSection(products = products, onAddClick = { /* add */ },navController = navController)
 
         Spacer(Modifier.height(12.dp))
 
-        BestSellingSection(products = products, onAddClick = { /* add */ })
+        BestSellingSection(products = products, onAddClick = { /* add */ },navController = navController)
+
+        Spacer(Modifier.height(12.dp))
+
+        GroceriesSection(category = groceries, products = products, onAddClick = { /* add */ },navController = navController)
     }
 }
 
-@Preview(showBackground = true, showSystemUi = false)
+@Preview(showBackground = true)
 @Composable
 fun HomeContentPreview() {
-    val products = productsDemo
-    HomeContent(onSearch = {}, products = products)
+    val navController = rememberNavController()
+    HomeContent(
+        onSearch = {},
+        products = productsDemo,
+        groceries = groceriesDemo,
+        navController = navController
+    )
 }
+
 

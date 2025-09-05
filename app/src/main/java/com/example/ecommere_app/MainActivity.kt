@@ -18,9 +18,11 @@ import com.example.ecommere_app.components.onBoarding.LoginScreen
 import com.example.ecommere_app.components.onBoarding.SignUpScreen
 import com.example.ecommere_app.components.onBoarding.StartScreen
 import com.example.ecommere_app.navigation.MainScreen
+import com.example.ecommere_app.screen.ProductDetailScreen
 import com.example.ecommere_app.ui.theme.EcommereappTheme
 import com.example.ecommere_app.screen.TextSplash
 import com.example.ecommere_app.utility.Screen
+import com.example.ecommere_app.utility.Tab
 import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
@@ -52,6 +54,16 @@ fun AppNavHost() {
         composable(Screen.Login.route)   { LoginScreen(appNav) }
         composable(Screen.SignUp.route)  { SignUpScreen(appNav) }
         composable(Screen.Home.route)    { MainScreen(navController = appNav) } // ✅ only outer nav passed
+        composable(Screen.Home.route) {
+            MainScreen(navController = appNav)
+        }
+        composable("productDetail/{productId}") { backStackEntry ->
+            val productId = backStackEntry.arguments?.getString("productId")
+            ProductDetailScreen(
+                productId = productId,
+                onBackClick = { appNav.popBackStack(Screen.Home.route, inclusive = false)}
+            )
+        }
     }
 }
 
