@@ -5,6 +5,7 @@ import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.ui.graphics.Color
 import com.example.ecommere_app.R
 import com.example.ecommere_app.model.BottomNavItem
+import com.example.ecommere_app.model.CategoryUI
 import com.example.ecommere_app.model.GroceriesUI
 import com.example.ecommere_app.model.ProductUI
 
@@ -58,6 +59,46 @@ val groceriesDemo = listOf(
         imageRes = R.drawable.pulses       // replace with your drawable
     )
 )
+
+val categoriesDemo = listOf(
+    CategoryUI(
+        id = "1",
+        name = "Fresh Fruits & Vegetable",
+        imageRes = R.drawable.ic_fruits, // replace with your drawable
+        backgroundColor = Color(0xFFDFF6DD) // light green
+    ),
+    CategoryUI(
+        id = "2",
+        name = "Cooking Oil & Ghee",
+        imageRes = R.drawable.ic_oil, // replace with your drawable
+        backgroundColor = Color(0xFFFFF2CC) // light yellow
+    ),
+    CategoryUI(
+        id = "3",
+        name = "Meat & Fish",
+        imageRes = R.drawable.ic_meat, // replace with your drawable
+        backgroundColor = Color(0xFFFFE0E0) // light red/pink
+    ),
+    CategoryUI(
+        id = "4",
+        name = "Bakery & Snacks",
+        imageRes = R.drawable.ic_bakery, // replace with your drawable
+        backgroundColor = Color(0xFFF1E0FF) // light purple
+    ),
+    CategoryUI(
+        id = "5",
+        name = "Dairy & Eggs",
+        imageRes = R.drawable.ic_dairy, // replace with your drawable
+        backgroundColor = Color(0xFFFFF9DB) // light cream
+    ),
+    CategoryUI(
+        id = "6",
+        name = "Beverages",
+        imageRes = R.drawable.ic_beverages, // replace with your drawable
+        backgroundColor = Color(0xFFE0F4FF) // light blue
+    )
+)
+
 val bottomNavItems = listOf(
     BottomNavItem("shop", "Shop", R.drawable.outline_storefront_24),
     BottomNavItem("explore", "Explore", R.drawable.outline_travel_explore_24),
