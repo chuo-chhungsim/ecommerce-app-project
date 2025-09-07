@@ -1,5 +1,6 @@
 package com.example.ecommere_app.navigation
 
+import android.net.Uri
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -12,14 +13,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import bottomNavItems
 import categoriesDemo
+import com.example.ecommere_app.screen.CartContentScreen
+import com.example.ecommere_app.screen.CategoryItemScreen
 import com.example.ecommere_app.screen.ExploreContentScreen
+import com.example.ecommere_app.screen.FavouritesContentScreen
 import com.example.ecommere_app.screen.HomeContent
+import com.example.ecommere_app.screen.OrderAcceptedScreen
+import com.example.ecommere_app.utility.Screen
 import com.example.ecommere_app.utility.Tab
 import groceriesDemo
 import productsDemo
@@ -54,31 +62,46 @@ fun MainScreen(
             composable(Tab.Explore.route) {
                 ExploreContentScreen(
                     onSearch = {},
-                    navController = navController,
+                    navController = tabsNavController,
                     categories = categoriesDemo,
                     categoryName = "Find Products"
                 )
             }
-            composable(Tab.Cart.route) { CartContent() }
-            composable(Tab.Favourite.route) { FavouriteContent() }
+            composable(
+                route = Tab.Category.route,
+                arguments = listOf(navArgument("categoryName") { type = NavType.StringType })
+            ) { backStackEntry ->
+                val rawName = backStackEntry.arguments?.getString("categoryName")
+                val categoryName = rawName?.let { Uri.decode(it) } ?: "Category"
+
+                CategoryItemScreen(
+                    categoryName = categoryName,
+                    products = productsDemo,
+                    onAddClick = {},
+                    navController = navController,
+                    onBackClick = {
+                        tabsNavController.popBackStack(
+                            Tab.Explore.route,
+                            inclusive = false
+                        )
+                    }
+                )
+            }
+            composable(Tab.Cart.route) { CartContentScreen(products = productsDemo,navController = tabsNavController) }
+            composable(Tab.OrderAccepted.route) {
+                OrderAcceptedScreen(
+                    onTrackOrder = {  },
+                    onBackToHome = { navController.navigate(Screen.Home.route) })
+            }
+            composable(Tab.Favourite.route) { FavouritesContentScreen(
+                products = productsDemo,
+                navController = tabsNavController
+            ) }
             composable(Tab.Account.route) { AccountContent() }
         }
     }
 }
 
-
-@Composable
-fun CartContent() {
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text("Cart", fontSize = 20.sp, fontWeight = FontWeight.SemiBold)
-    }
-}
-@Composable
-fun FavouriteContent() {
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text("Favourite", fontSize = 20.sp, fontWeight = FontWeight.SemiBold)
-    }
-}
 
 @Composable
 fun AccountContent() {

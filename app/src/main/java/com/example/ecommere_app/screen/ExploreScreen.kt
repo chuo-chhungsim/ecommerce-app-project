@@ -1,13 +1,16 @@
 package com.example.ecommere_app.screen
 
+import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -23,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import categoriesDemo
 import com.example.ecommere_app.components.CategoryCard
 import com.example.ecommere_app.components.SearchField
 import com.example.ecommere_app.model.CategoryUI
@@ -55,13 +59,6 @@ fun ExploreContentScreen(
             )
         }
     ) { innerPadding ->
-        SearchField(
-            onSearch = onSearch,
-            placeholder = "Search Store",
-            modifier = Modifier
-                .padding(horizontal = 8.dp)
-                .fillMaxWidth()
-        )
 
         Spacer(Modifier.height(8.dp))
         LazyVerticalGrid(
@@ -71,11 +68,21 @@ fun ExploreContentScreen(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             modifier = Modifier.padding(innerPadding)
         ) {
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                SearchField(
+                    onSearch = onSearch,
+                    placeholder = "Search Store",
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp)
+                        .fillMaxWidth()
+                )
+            }
             items(categories, key = { it.id }) { category ->
                 CategoryCard(
                     category = category,
                     onClick = {
-                        navController.navigate(Tab.Category.createRoute(category.name))
+                        val safeName = Uri.encode(category.name)
+                        navController.navigate(Tab.Category.createRoute(safeName))
                     }
                 )
             }
@@ -88,25 +95,6 @@ fun ExploreContentScreen(
 @Composable
 fun ExploreContentScreenPreview() {
     val navController = rememberNavController()
-    val categories = listOf(
-        CategoryUI(
-            id = "1",
-            name = "Electronics",
-            imageRes = android.R.drawable.ic_menu_camera,
-            backgroundColor = androidx.compose.ui.graphics.Color.Red
-        ),
-        CategoryUI(
-            id = "2",
-            name = "Clothing",
-            imageRes = android.R.drawable.ic_menu_gallery,
-            backgroundColor = androidx.compose.ui.graphics.Color.Blue
-        ),
-        CategoryUI(
-            id = "3",
-            name = "Books",
-            imageRes = android.R.drawable.ic_menu_agenda,
-            backgroundColor = androidx.compose.ui.graphics.Color.Green
-        )
-    )
+    val categories = categoriesDemo
     ExploreContentScreen(onSearch = {},navController = navController, categoryName = "All Categories", categories = categories)
 }

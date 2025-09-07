@@ -7,6 +7,7 @@ sealed class Screen(val route: String) {
     data object Login : Screen("login")
     data object SignUp : Screen("signup")
     data object Home : Screen("home")
+
 }
 
 sealed class Tab(
@@ -21,6 +22,7 @@ sealed class Tab(
         fun createRoute(categoryName: String) = "category/$categoryName"
     }
     data object Cart : Tab("cart", "Cart", R.drawable.outline_shopping_cart_24)
+    data object OrderAccepted : Screen("order_accepted")
     data object Favourite : Tab("favourite", "Favourite", R.drawable.outline_favorite_24)
     data object Account : Tab("account", "Account", R.drawable.outline_person_24)
 }
