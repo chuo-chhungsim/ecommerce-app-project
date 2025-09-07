@@ -1,8 +1,11 @@
 # [nectar] - Android E-commerce App (Kotlin)
 
 ## 🛍️ Overview
-[Jetpack Compose Design & Layout Design : ASSIGNMENT_002]
-[CHUO-CHHUNGSIM]
+
+[ASSIGNMENT_002].<br>
+
+[AUTHOR : CHUO-CHHUNGSIM].<br>
+
 [nectar] is a native Android application built with Kotlin. It aims to provide users with a seamless mobile shopping experience, allowing them to browse products, manage a shopping cart, and simulate the checkout process. This project is developed to [mention your main goal, e.g., learn modern Android development, build a portfolio piece, explore e-commerce app features].
 
 ## ✨ Features
