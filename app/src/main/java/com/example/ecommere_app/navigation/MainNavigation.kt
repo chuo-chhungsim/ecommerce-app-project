@@ -21,6 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import bottomNavItems
 import categoriesDemo
+import com.example.ecommere_app.screen.AccountScreen
 import com.example.ecommere_app.screen.CartContentScreen
 import com.example.ecommere_app.screen.CategoryItemScreen
 import com.example.ecommere_app.screen.ExploreContentScreen
@@ -97,7 +98,17 @@ fun MainScreen(
                 products = productsDemo,
                 navController = tabsNavController
             ) }
-            composable(Tab.Account.route) { AccountContent() }
+            composable(Tab.Account.route) { AccountScreen(
+                onOrdersClick = {  },
+                onMyDetailsClick = {  },
+                onDeliveryAddressClick = {  },
+                onPaymentMethodsClick = {  },
+                onPromoClick = {  },
+                onNotificationsClick = {  },
+                onHelpClick = {  },
+                onAboutClick = {  },
+                onLogoutClick = {  }
+            ) }
         }
     }
 }

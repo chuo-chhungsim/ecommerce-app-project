@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="gray">#505050</color>
+    <color name="lignt_gray">#DBDBDB</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green">#368C5A</color>
     <color name="btn_green">#43B071</color>
